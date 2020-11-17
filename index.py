@@ -8,8 +8,8 @@ import base64
 import urllib
 import os
 
-Kraken_secret_key = 'pp1SpnXvn4Wr+chbXWG/baFzFvLJCDPNpp/XfTZJWsrUGJS8Wp79BDIkug8iALp5k42TukpgTcgSp3OGZbxnJA=='
-Kraken_headers = {'API-Key': 'EB2e94jAdKzEPjIAsAxTfPUl7vuvKfN4+8jUiBtn6MxD1rvAG8srtUZW'
+Kraken_secret_key = ''
+Kraken_headers = {'API-Key': ''
 }
 Kraken_nonce = str(int(time.time()*1000))
 Kraken_POST_data = {'nonce': Kraken_nonce}
