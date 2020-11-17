@@ -14,7 +14,7 @@ Kraken_headers = {'API-Key': 'EB2e94jAdKzEPjIAsAxTfPUl7vuvKfN4+8jUiBtn6MxD1rvAG8
 Kraken_nonce = str(int(time.time()*1000))
 Kraken_POST_data = {'nonce': Kraken_nonce}
 
-
+#fonction qui permet de recuperer les données de ce que l'on possède sur la plateforme
 def Kraken_account_balance(Kraken_headers, URI_path):
 
     URL_path = 'https://api.kraken.com'+URI_path
@@ -35,7 +35,7 @@ def Kraken_account_balance(Kraken_headers, URI_path):
 
     return result['result']
 
-
+#permet de recuperer le serverTime
 def Kraken_server_Time(Kraken_headers, URI_path):
 
     URL_path = 'https://api.kraken.com'+URI_path
@@ -46,7 +46,7 @@ def Kraken_server_Time(Kraken_headers, URI_path):
     result = response.json()
     return result['result']
 
-
+#Permet de recuperer une liste de tout les paires
 def Kraken_All_Pairs(Kraken_headers, URI_path):
 
     URL_path = 'https://api.kraken.com' + URI_path
@@ -54,10 +54,11 @@ def Kraken_All_Pairs(Kraken_headers, URI_path):
         URL_path, data=Kraken_POST_data, headers=Kraken_headers)
 
     result = response.json()
+    #On envoie une list de ce qui doit etre enregistrer dans le fichier pairs.json -> donc tout nos paires possible.
     Save_Data_Into_File(list(result['result'].keys()), 'pairs.json')
     return result['result']
 
-
+#Fonction qui permet de recuperer les pairs souhaité
 def Kraken_Pair(Kraken_headers, URI_path, pair):
 
     URL_path = 'https://api.kraken.com'+URI_path
@@ -68,6 +69,7 @@ def Kraken_Pair(Kraken_headers, URI_path, pair):
     result = response.json()
     return result['result']
 
+#cette fonction permet d'enregistrer tout ce que l'on souhaite, il suffit de lui envoyer une list en entrer et elle enregistrera les clés. le deuxieme paragraphe et le filename
 def Save_Data_Into_File(content, filename):
     if os.stat(filename).st_size == 0:
         f= open(filename,"w+")
@@ -76,7 +78,7 @@ def Save_Data_Into_File(content, filename):
         f.close
     
         
-
+###################### Test des fonctions  ##################################
 
 #krakenBalance = Kraken_account_balance(Kraken_headers, '/0/private/Balance')# On recupere un object avec tout nos currency
 
